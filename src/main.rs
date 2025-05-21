@@ -72,14 +72,25 @@ impl Executor {
 
 fn main() {
     let (executor, spawner) = new_executor_and_spawner();
-
+    
     spawner.spawn(async {
         println!("Priscilla's Komputer: howdy!");
         TimerFuture::new(Duration::new(2, 0)).await;
         println!("Priscilla's Komputer: done!");
     });
+    spawner.spawn(async {
+        println!("Priscilla's Komputer: howdy2!");
+        TimerFuture::new(Duration::new(2, 0)).await;
+        println!("Priscilla's Komputer: done2!");
+    });
+    spawner.spawn(async {
+        println!("Priscilla's Komputer: howdy3!");
+        TimerFuture::new(Duration::new(2, 0)).await;
+        println!("Priscilla's Komputer: done3!");
+    });
+
     println!("Priscilla's Komputer: hey hey");
 
-    drop(spawner);
+    // drop(spawner);
     executor.run();
 }
